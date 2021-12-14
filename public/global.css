@@ -1,28 +1,250 @@
-html, body {
-	position: relative;
-	width: 100%;
-	height: 100%;
+/*!
+ * Pico.css v1.4.1 (https://picocss.com)
+ * Copyright 2019-2021 - Licensed under MIT
+ */
+:root {
+	--font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+	  "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+	  "Segoe UI Symbol", "Noto Color Emoji";
+	--line-height: 1.5;
+	--font-weight: 400;
+	--font-size: 16px;
+	--border-radius: 0.25rem;
+	--border-width: 1px;
+	--outline-width: 3px;
+	--spacing: 1rem;
+	--typography-spacing-vertical: 1.5rem;
+	--block-spacing-vertical: calc(var(--spacing) * 2);
+	--block-spacing-horizontal: var(--spacing);
+	--grid-spacing-vertical: 0;
+	--grid-spacing-horizontal: var(--spacing);
+	--form-element-spacing-vertical: 0.75rem;
+	--form-element-spacing-horizontal: 1rem;
+	--transition: 0.2s ease-in-out;
+}
+
+/**
+ * Document
+ * Content-box & Responsive typography
+ */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+ 
+::before,
+::after {
+	text-decoration: inherit;
+	vertical-align: inherit;
+}
+ 
+html {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-text-size-adjust: 100%;
+	    -ms-text-size-adjust: 100%;
+	-moz-tab-size: 4;
+	  -o-tab-size: 4;
+	     tab-size: 4;
+	background-color: var(--background-color);
+	color: var(--color);
+	cursor: default;
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	font-weight: var(--font-weight);
+	line-height: var(--line-height);
+	text-rendering: optimizeLegibility;
+}
+
+/**
+ * Sectioning
+ * Container and responsive spacings for header, main, footer
+ */
+main {
+	display: block;
 }
 
 body {
-	color: #333;
 	margin: 0;
-	padding: 8px;
-	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	width: 100%;
+}
+
+body > header,
+body > main,
+body > footer {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	padding: var(--block-spacing-vertical) 0;
+}
+
+/**
+* Container
+*/
+.container,
+.container-fluid {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: var(--spacing);
+	padding-left: var(--spacing);
+}
+
+@media (min-width: 576px) {
+	.container {
+		max-width: 510px;
+		padding-right: 0;
+		padding-left: 0;
+	}
+}
+@media (min-width: 768px) {
+	.container {
+		max-width: 700px;
+	}
+}
+@media (min-width: 992px) {
+	.container {
+		max-width: 920px;
+	}
+}
+@media (min-width: 1200px) {
+	.container {
+		max-width: 1130px;
+	}
+}
+
+/**
+ * Section
+ * Responsive spacings for section
+ */
+section {
+	margin-bottom: var(--block-spacing-vertical);
+}
+
+/**
+ * Horizontal scroller (<figure>)
+ */
+figure {
+	display: block;
+	margin: 0;
+	padding: 0;
+	overflow-x: auto;
+}
+figure figcaption {
+	padding: calc(var(--spacing) * 0.5) 0;
+	color: var(--muted-color);
+}
+
+/**
+ * Typography
+ */
+b,
+strong {
+   font-weight: bolder;
+}
+
+sub,
+sup {
+   position: relative;
+   font-size: 0.75em;
+   line-height: 0;
+   vertical-align: baseline;
+}
+
+sub {
+   bottom: -0.25em;
+}
+
+sup {
+	top: -0.5em;
+}
+
+dl dl,
+dl ol,
+dl ul,
+ol dl,
+ul dl {
+	margin: 0;
+}
+
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+	margin: 0;
+}
+
+address,
+blockquote,
+dl,
+figure,
+form,
+ol,
+p,
+pre,
+table,
+ul {
+	margin-top: 0;
+	margin-bottom: var(--typography-spacing-vertical);
+	color: var(--color);
+	font-size: var(--font-size);
+	font-weight: var(--font-weight);
+	font-style: normal;
 }
 
 a {
-	color: rgb(0,100,200);
-	text-decoration: none;
+	--color: var(--primary);
+	--background-color: transparent;
+	outline: none;
+	background-color: var(--background-color);
+	color: var(--color);
+	-webkit-text-decoration: var(--text-decoration);
+			text-decoration: var(--text-decoration);
+	transition: background-color var(--transition), color var(--transition), box-shadow var(--transition), -webkit-text-decoration var(--transition);
+	transition: background-color var(--transition), color var(--transition), text-decoration var(--transition), box-shadow var(--transition);
+	transition: background-color var(--transition), color var(--transition), text-decoration var(--transition), box-shadow var(--transition), -webkit-text-decoration var(--transition);
+}
+a:hover, a:active, a:focus {
+	--color: var(--primary-hover);
+	--text-decoration: underline;
+}
+a:focus {
+	--background-color: var(--primary-focus);
 }
 
-a:hover {
-	text-decoration: underline;
+h1 {
+	--font-size: 2rem;
+	--typography-spacing-vertical: 3rem;
 }
-
-a:visited {
-	color: rgb(0,80,160);
+h2 {
+	--font-size: 1.75rem;
+	--typography-spacing-vertical: 2.625rem;
+}
+h3 {
+	--font-size: 1.5rem;
+	--typography-spacing-vertical: 2.25rem;
+}
+h4 {
+	--font-size: 1.25rem;
+	--typography-spacing-vertical: 1.874rem;
+}
+h5 {
+	--font-size: 1.125rem;
+	--typography-spacing-vertical: 1.6875rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	--font-weight: 700;
+	margin-top: 0;
+	margin-bottom: var(--typography-spacing-vertical);
+	color: var(--color);
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	font-weight: var(--font-weight);
 }
 
 label {
